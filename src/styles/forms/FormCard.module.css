@@ -1,0 +1,9 @@
+.FormCard {
+    @apply bg-background
+    flex flex-col gap-4
+    w-full min-h-[4rem] p-4 rounded-xl
+}
+
+.FormCardTitle {
+    @apply text-lg font-semibold mb-2
+}

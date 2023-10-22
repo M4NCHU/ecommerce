@@ -1,0 +1,33 @@
+.FormDefaultContainer {
+    @apply flex  
+    /* media */
+    /* sm */
+    flex-col
+    w-full
+    
+}
+
+.FormContainer {
+    @apply w-full flex flex-col lg:flex-row mb-4
+    
+}
+
+.FormDefaultLeft {
+    @apply w-full lg:w-7/12
+}
+
+.FormDefaultRight {
+    @apply w-full lg:w-5/12
+}
+
+.FormDefaultLeft, .FormDefaultRight { 
+    @apply flex flex-col items-center grow p-2 gap-4
+}
+
+.FormDefaultInputGroup {
+    @apply flex flex-row gap-2
+}
+
+.FormDefaultBtn{
+    @apply w-full bg-default-200 rounded-lg mt-4 p-2
+}

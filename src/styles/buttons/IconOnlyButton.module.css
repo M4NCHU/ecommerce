@@ -1,0 +1,3 @@
+.DefaultIconOnly {
+    @apply rounded-full bg-transparent hover:bg-default-200
+}

@@ -14,9 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={`bg-background`}>{children}</body>
-      </Providers>
+      <body className={`bg-background`}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

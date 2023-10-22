@@ -1,0 +1,8 @@
+.TableDefault { 
+    @apply  text-base
+}
+
+
+.TableBody { 
+    @apply  overflow-auto
+}

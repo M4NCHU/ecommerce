@@ -1,13 +1,13 @@
-import { Category, Post, PostTags, Tag, User } from "@prisma/client";
+import { Category, CustomFilter, FilterOption, Product } from "@prisma/client";
 
-export type ExtendedPost = Post & {
+export type ExtendedProduct = Product & {
   category: Category;
-  votes: Vote[];
-  author: User;
-  comments: Comments[];
-  tags: PostTags[];
 };
 
-export type PostWithUser = Post & {
-  author: User;
+export type ExtendedCategory = Category & {
+  customFilters: CustomFilterWithFilterOptions[];
+};
+
+export type CustomFilterWithFilterOptions = CustomFilter & {
+  filterOptions: FilterOption[];
 };

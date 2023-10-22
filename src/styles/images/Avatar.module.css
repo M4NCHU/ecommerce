@@ -1,0 +1,7 @@
+.AvatarParent {
+    @apply w-10 h-10 rounded-full relative
+}
+
+.AvatarImg {
+    @apply object-contain  rounded-full
+}

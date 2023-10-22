@@ -1,0 +1,11 @@
+.FormHeader {
+    @apply flex flex-row gap-2 justify-between sticky top-0
+}
+
+.FormHeader h2 {
+    @apply text-2xl font-bold
+}
+
+.FormHeader span {
+    @apply text-base
+}

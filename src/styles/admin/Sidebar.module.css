@@ -1,0 +1,115 @@
+/* Sidebar styles */
+
+.Sidebar {
+  @apply 
+  h-screen
+  bg-background
+  flex flex-col
+  
+
+  /* ====== media ====== */
+
+  /* sm */
+  fixed top-0 left-0 w-10/12 
+
+  /* md */
+  md:w-[24rem] md:relative md:translate-x-0 md:top-auto
+  z-[9999]
+
+  /* open and close slow */
+  transform transition-transform duration-500 ease-in-out
+}
+
+/* logo at the top */
+.SidebarLogo {
+  @apply text-2xl 
+  h-[4rem] 
+  py-2 px-6 
+  flex items-center 
+}
+
+/* links container */
+.SidebarNav {
+  @apply grow
+  sticky top-0 
+  p-2 
+  overflow-auto
+}
+
+/* Section with links */
+.SidebarSection {
+  @apply text-base
+  p-2   
+}
+
+.SidebarSectionHeader {
+  @apply text-base uppercase font-semibold 
+  mb-2
+  pb-2
+  border-b-1 border-default-100
+}
+
+.SidebarSectionLink {
+  @apply text-base
+}
+
+
+.SidebarList {
+  @apply w-full 
+  flex flex-col gap-1
+}
+
+.SidebarList > div {
+  @apply p-0
+}
+
+
+.SidebarListElement {
+  @apply 
+  flex flex-row 
+  w-full 
+}
+
+.SidebarListLink {
+  @apply
+  flex flex-row gap-2 items-center
+  w-full 
+  p-3 
+  rounded-lg
+  text-base
+  hover:bg-backgroundSecond
+}
+
+.SidebarListAccordion {
+  @apply w-full 
+  rounded-lg
+  p-3 
+  flex flex-col
+  hover:bg-backgroundSecond
+}
+
+.SidebarListAccordion button {
+  @apply p-0 
+}
+
+.SidebarListAccordion .group {
+  @apply w-full p-0 
+}
+
+.SidebarListAccordion a {
+  @apply flex flex-row gap-2 items-center
+  w-full 
+  border-l-2 border-default-100
+  p-3 
+  rounded-r-lg
+  text-base
+  hover:bg-background
+}
+
+.SidebarBlackBg {
+  @apply h-screen w-screen bg-opacity-90 bg-background/70 fixed z-[9998]
+}
+
+.SidebarBlackBg button {
+  @apply fixed top-5 right-5 bg-backgroundSecond
+}

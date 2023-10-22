@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { FC } from "react";
+import { Toaster } from "react-hot-toast";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
       <SessionProvider>
         <NextUIProvider>
           <NextThemesProvider attribute="class" defaultTheme="dark">
+            <Toaster />
             <SidebarContextProvider>{children}</SidebarContextProvider>
           </NextThemesProvider>
         </NextUIProvider>

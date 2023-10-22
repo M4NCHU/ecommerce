@@ -55,9 +55,19 @@ export function formatTimeToNow(date: Date): string {
   });
 }
 
+// format date to readable format
 export function getNiceDate(date: Date) {
-  let month = (date.getUTCMonth() + 1).toString().padStart(2, "0"); // Miesiące od 01 do 12
+  let month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
   let day = date.getUTCDate().toString().padStart(2, "0");
   let year = date.getUTCFullYear();
   return year + "/" + month + "/" + day;
+}
+
+// limit text length to char number from parameter
+export function limitText(text: string, maxLength: number) {
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    return text.slice(0, maxLength) + "...";
+  }
 }

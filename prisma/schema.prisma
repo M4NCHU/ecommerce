@@ -59,6 +59,184 @@ model User {
   role UserRole @default(GUEST)
 }
 
+// product model
+// schema.prisma
+
+// Definicja tabeli Produktów
+// schema.prisma
+
+// Definicja tabeli Produktów
+model Product {
+  id              String           @id @default(cuid())
+  name            String
+  description     Json?
+  price           Float
+  stock           Int
+  primaryImageUrl String
+  category        Category         @relation(fields: [categoryId], references: [id])
+  categoryId      String
+  reviews         Review[]
+  productImages   ProductImage[]
+  customFilters   CustomFilter[] // Relacja z niestandardowymi filtrami
+  variants        ProductVariant[]
+  OrderItem       OrderItem[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+}
+
+// Definicja tabeli Dodatkowych Obrazków Produktu
+model ProductImage {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Definicja tabeli Kategorii
+model Category {
+  id            String         @id @default(cuid())
+  name          String
+  description   String
+  imageUrl      String
+  products      Product[]
+  customFilters CustomFilter[] // Relacja z niestandardowymi filtrami
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+// Definicja tabeli Niestandardowych Filtrów
+model CustomFilter {
+  id            String          @id @default(cuid())
+  name          String
+  categoryId    String
+  category      Category        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  filterOptions FilterOption[] // Relacja z opcjami filtrów
+  Product       Product?        @relation(fields: [productId], references: [id])
+  productId     String?
+  fieldType     FilterFieldType @default(SELECT)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Definicja tabeli Opcji Filtrów
+model FilterOption {
+  id               String       @id @default(cuid())
+  option           String
+  customFilter     CustomFilter @relation(fields: [customFilterId], references: [id], onDelete: Cascade)
+  customFilterId   String
+  availableChoices String? // Dostępne opcje wyboru, jeśli to pole typu "ListaWyboru"
+  choiceFrom       Float?
+  choiceTo         Float?
+}
+
+enum FilterFieldType {
+  NUMERIC
+  TEXT
+  SELECT
+}
+
+// Definicja tabeli Zamówień
+model Order {
+  id                String      @id @default(cuid())
+  orderDate         DateTime
+  customer          Customer    @relation(fields: [customerId], references: [id])
+  customerId        String
+  items             OrderItem[]
+  total             Float
+  status            String
+  shippingAddress   Address     @relation("shippingAddress", fields: [shippingAddressId], references: [id])
+  billingAddress    Address     @relation("billingAddress", fields: [billingAddressId], references: [id])
+  shippingAddressId String
+  billingAddressId  String
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+// Definicja tabeli Pozycji Zamówienia
+model OrderItem {
+  id               String          @id @default(cuid())
+  product          Product         @relation(fields: [productId], references: [id])
+  productId        String
+  order            Order           @relation(fields: [orderId], references: [id])
+  orderId          String
+  quantity         Int
+  unitPrice        Float
+  total            Float
+  productVariant   ProductVariant? @relation(fields: [productVariantId], references: [id])
+  productVariantId String?
+}
+
+// Definicja tabeli Klientów
+model Customer {
+  id             String          @id @default(cuid())
+  firstName      String
+  lastName       String
+  email          String          @unique
+  password       String
+  orders         Order[]
+  addresses      Address[]
+  paymentMethods PaymentMethod[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+// Definicja tabeli Adresów
+model Address {
+  id             String     @id @default(cuid())
+  street         String
+  city           String
+  postalCode     String
+  country        String
+  customers      Customer[]
+  shippingOrders Order[]    @relation("shippingAddress")
+  billingOrders  Order[]    @relation("billingAddress")
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+// Definicja tabeli Metod Płatności
+model PaymentMethod {
+  id              String   @id @default(cuid())
+  type            String
+  cardNumber      String
+  expirationMonth Int
+  expirationYear  Int
+  customer        Customer @relation(fields: [customerId], references: [id])
+  customerId      String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+// Definicja tabeli Recenzji
+model Review {
+  id        String   @id @default(cuid())
+  text      String
+  rating    Int
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Definicja tabeli Wariantów Produktu
+model ProductVariant {
+  id        String  @id @default(cuid())
+  name      String
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  OrderItem OrderItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+// Pozostałe definicje pozostają bez zmian
+
+// Pozostałe definicje pozostają bez zmian
+
 enum UserRole {
   ADMIN
   MODERATOR

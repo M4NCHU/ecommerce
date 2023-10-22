@@ -1,0 +1,74 @@
+.FilterMain {
+    @apply container
+    p-4
+    flex
+    flex-col
+    w-full
+    gap-2
+}
+
+.FilterContainer{ 
+    @apply bg-red-500
+    p-4
+    flex
+    flex-col
+    rounded-xl
+    bg-transparent
+    hover:bg-default-100
+    cursor-pointer
+    mb-2
+}
+
+.FilterHead{
+    @apply flex flex-col
+    mb-2
+}
+
+.FilterHeader {
+    @apply text-xl
+    font-semibold
+    mb-2
+}
+
+.FilterOptions{
+    @apply flex flex-row
+    gap-2
+    flex-wrap
+}
+
+.FilterOption{
+    @apply flex
+    bg-backgroundSecond p-2
+    rounded-xl
+    hover:bg-backgroundSecond/50
+}
+
+.FilterFromTo{ 
+    @apply flex flex-col
+    gap-2
+}
+
+.FilterCreateContainer {
+    @apply flex flex-col gap-2 mb-2
+}
+
+.FilterInput {
+    @apply p-2 rounded-lg bg-backgroundSecond/20
+}
+
+
+.FilterButton {
+    @apply p-2 rounded-lg
+}
+
+.FilterButtonCreate {
+    @apply p-2 rounded-lg bg-success-500/70
+}
+
+.ButtonContainer{
+    @apply flex gap-2
+}
+
+.FilterButtonDanger{
+    @apply bg-danger-500
+}
